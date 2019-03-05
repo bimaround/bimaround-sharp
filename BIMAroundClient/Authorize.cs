@@ -14,7 +14,7 @@ namespace BIMAroundClient
                 password = password
             };
 
-            var client = new RestClient("https://bim.org.kz/api");
+            var client = new RestClient("https://bimaround.com/api");
             var request = new RestRequest("/login") {Method = Method.POST};
             request.AddJsonBody(loginRequest);
 

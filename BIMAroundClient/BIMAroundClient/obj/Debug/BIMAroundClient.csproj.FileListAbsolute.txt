@@ -1,0 +1,8 @@
+C:\dev\PLUGIN\bimaround-sharp\BIMAroundClient\BIMAroundClient\bin\Debug\BIMAroundClient.dll
+C:\dev\PLUGIN\bimaround-sharp\BIMAroundClient\BIMAroundClient\bin\Debug\BIMAroundClient.pdb
+C:\dev\PLUGIN\bimaround-sharp\BIMAroundClient\BIMAroundClient\bin\Debug\RestSharp.dll
+C:\dev\PLUGIN\bimaround-sharp\BIMAroundClient\BIMAroundClient\bin\Debug\RestSharp.xml
+C:\dev\PLUGIN\bimaround-sharp\BIMAroundClient\BIMAroundClient\obj\Debug\BIMAroundClient.csproj.CoreCompileInputs.cache
+C:\dev\PLUGIN\bimaround-sharp\BIMAroundClient\BIMAroundClient\obj\Debug\BIMAroundClient.csproj.CopyComplete
+C:\dev\PLUGIN\bimaround-sharp\BIMAroundClient\BIMAroundClient\obj\Debug\BIMAroundClient.dll
+C:\dev\PLUGIN\bimaround-sharp\BIMAroundClient\BIMAroundClient\obj\Debug\BIMAroundClient.pdb

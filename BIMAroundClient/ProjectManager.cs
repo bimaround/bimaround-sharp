@@ -12,7 +12,7 @@ namespace BIMAroundClient
         {
             try
             {
-                var client = new RestClient("https://bim.org.kz/api");
+                var client = new RestClient("https://bimaround.com/api");
                 var request = new RestRequest("/projects");
                 request.AddHeader("Authorization", "Bearer " + token);
 

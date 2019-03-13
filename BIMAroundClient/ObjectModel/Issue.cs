@@ -5,5 +5,6 @@ namespace BIMAroundClient.ObjectModel
     {
         public string title { get; set; }
         public string iid { get; set; }
+        public string status { get; set; }
     }
 }

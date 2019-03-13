@@ -18,8 +18,6 @@ namespace BIMAroundClient
 
                 var restResponse = client.Execute<ProjectResponse>(request);
 
-                System.Diagnostics.Debug.WriteLine(restResponse.Content);
-
                 var projects = new List<Project>();
                 projects.AddRange(restResponse.Data.data);
                 return projects;

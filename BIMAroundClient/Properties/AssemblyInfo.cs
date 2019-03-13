@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BIMAroundClient")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("BIMAround-Sharp")]
+[assembly: AssemblyDescription("BIMAround Simple Rest Client")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("BIMAround")]
 [assembly: AssemblyProduct("BIMAroundClient")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BIMAroundClient</RootNamespace>
-    <AssemblyName>BIMAroundClient</AssemblyName>
+    <AssemblyName>BIMAround-Sharp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="RestSharp, Version=106.6.9.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.6.9\lib\net452\RestSharp.dll</HintPath>
@@ -50,6 +53,7 @@
     <Compile Include="Interfaces\IIssuesManager.cs" />
     <Compile Include="Interfaces\IProjectManager.cs" />
     <Compile Include="IssuesManager.cs" />
+    <Compile Include="ObjectModel\CreateIssueRequest.cs" />
     <Compile Include="ObjectModel\GetIssuesResponse.cs" />
     <Compile Include="ObjectModel\Issue.cs" />
     <Compile Include="ObjectModel\IssueResponse.cs" />

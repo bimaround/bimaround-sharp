@@ -2,7 +2,7 @@
 
 namespace BIMAroundClient.ObjectModel.Notes
 {
-    public class GetNotesResponse
+    class GetNotesResponse
     {
         public List<Note> Notes { get; set; }
     }

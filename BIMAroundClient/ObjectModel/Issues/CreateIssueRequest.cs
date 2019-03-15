@@ -1,5 +1,5 @@
 ﻿
-namespace BIMAroundClient.ObjectModel
+namespace BIMAroundClient.ObjectModel.Issues
 {
     public class CreateIssueRequest
     {

@@ -55,17 +55,17 @@
     <Compile Include="Interfaces\IProjectManager.cs" />
     <Compile Include="IssueNotesManager.cs" />
     <Compile Include="IssuesManager.cs" />
-    <Compile Include="ObjectModel\CreateIssueRequest.cs" />
-    <Compile Include="ObjectModel\GetIssuesResponse.cs" />
-    <Compile Include="ObjectModel\Issue.cs" />
-    <Compile Include="ObjectModel\IssueResponse.cs" />
-    <Compile Include="ObjectModel\LoginRequest.cs" />
-    <Compile Include="ObjectModel\LoginResponse.cs" />
+    <Compile Include="ObjectModel\Issues\CreateIssueRequest.cs" />
+    <Compile Include="ObjectModel\Issues\GetIssuesResponse.cs" />
+    <Compile Include="ObjectModel\Issues\Issue.cs" />
+    <Compile Include="ObjectModel\Issues\IssueResponse.cs" />
+    <Compile Include="ObjectModel\Login\LoginRequest.cs" />
+    <Compile Include="ObjectModel\Login\LoginResponse.cs" />
     <Compile Include="ObjectModel\Notes\CreateNoteRequest.cs" />
     <Compile Include="ObjectModel\Notes\GetNotesResponse.cs" />
     <Compile Include="ObjectModel\Notes\Note.cs" />
-    <Compile Include="ObjectModel\Project.cs" />
-    <Compile Include="ObjectModel\ProjectResponse.cs" />
+    <Compile Include="ObjectModel\Project\Project.cs" />
+    <Compile Include="ObjectModel\Project\ProjectResponse.cs" />
     <Compile Include="ProjectManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

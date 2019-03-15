@@ -2,28 +2,29 @@
 using BIMAroundClient.Interfaces;
 using BIMAroundClient.ObjectModel.Notes;
 using RestSharp;
+using RestSharp.Serialization.Json;
 
 namespace BIMAroundClient
 {
     public class IssueNotesManager : IIssueNotesManager
     {
-        public List<Note> GetAllNotesByIssue(string token, string projectCode, string issueIid)
+        public List<Note> GetAllNotesByIssue(string token, string projectCode, string issueIid, string clientUrl)
         {
-            var client = Client;
+            var client = new RestClient(clientUrl);
             var request = new RestRequest("/projects/{projectCode}/issues/{iid}/notes");
             request.AddUrlSegment("projectCode", projectCode);
             request.AddUrlSegment("iid", issueIid);
             request.AddHeader("Authorization", "Bearer " + token);
 
-            var response = client.Execute<GetNotesResponse>(request);
-            var notes = response.Data;
-
-            return notes.Notes;
+            var response = client.Execute(request);
+            
+            var notes = new JsonDeserializer().Deserialize<List<Note>>(response);
+            return notes;
         }
 
-        public Note CreateNote(string token, string projectCode, string issueIid, Note note)
+        public Note CreateNote(string token, string projectCode, string issueIid, Note note, string clientUrl)
         {
-            var client = Client;
+            var client = new RestClient(clientUrl);
             var createNoteRequest = new CreateNoteRequest(){text = note.text};
 
             var request = new RestRequest("/projects/{projectCode}/issues/{iid}/notes"){ Method = Method.POST };
@@ -37,9 +38,9 @@ namespace BIMAroundClient
             return response.Data;
         }
 
-        public Note GetNoteById(string token, string projectCode, string issueIid, string noteId)
+        public Note GetNoteById(string token, string projectCode, string issueIid, string noteId, string clientUrl)
         {
-            var client = Client;
+            var client = new RestClient(clientUrl);
             var request = new RestRequest("/projects/{projectCode}/issues/{iid}/notes/{id}");
             request.AddUrlSegment("projectCode", projectCode);
             request.AddUrlSegment("iid", issueIid);
@@ -51,17 +52,16 @@ namespace BIMAroundClient
             return response.Data;
         }
 
-        public void DeleteNote(string token, string projectCode, string issueIid, string noteId)
+        public void DeleteNote(string token, string projectCode, string issueIid, string noteId, string clientUrl)
         {
-            var client = Client;
-            var request = new RestRequest("/projects/{projectCode}/issues/{iid}/notes/{id}");
+            var client = new RestClient(clientUrl);
+            var request = new RestRequest("/projects/{projectCode}/issues/{iid}/notes/{id}"){ Method = Method.DELETE };
             request.AddUrlSegment("projectCode", projectCode);
             request.AddUrlSegment("iid", issueIid);
             request.AddUrlSegment("id", noteId);
             request.AddHeader("Authorization", "Bearer " + token);
 
-            client.Execute(request);
+            var response = client.Execute(request);//used for debugging
         }
-        private RestClient Client => new RestClient("https://bimaround.com/api");
     }
 }

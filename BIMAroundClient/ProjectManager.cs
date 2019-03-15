@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using BIMAroundClient.Interfaces;
-using BIMAroundClient.ObjectModel;
+using BIMAroundClient.ObjectModel.Project;
 using RestSharp;
 
 namespace BIMAroundClient
 {
     public class ProjectManager : IProjectManager
     {
-        public List<Project> GetProjects(string token)
+        /// <summary>
+        /// Basic authentication method. If you want to use a different client address, you need to pass the clientUrl
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="clientUrl"></param>
+        /// <returns></returns>
+        public List<Project> GetProjects(string token, string clientUrl)
         {
             try
             {
-                var client = new RestClient("https://bimaround.com/api");
+                var client = new RestClient(clientUrl);
                 var request = new RestRequest("/projects");
                 request.AddHeader("Authorization", "Bearer " + token);
 

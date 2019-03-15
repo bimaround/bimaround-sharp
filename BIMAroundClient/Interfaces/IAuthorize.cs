@@ -3,6 +3,6 @@ namespace BIMAroundClient.Interfaces
 {
     public interface IAuthorize
     {
-        string GetToken(string login, string password);
+        string GetToken(string login, string password, string clientUrl = "https://bimaround.com/api");
     }
 }

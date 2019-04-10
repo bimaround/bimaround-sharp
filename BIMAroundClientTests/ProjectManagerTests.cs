@@ -1,4 +1,4 @@
-﻿using BIMAroundClient;
+using BIMAroundClient;
 using BIMAroundClient.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -29,7 +29,7 @@ namespace BIMAroundClientTests
         public void GetProjectsTest()
         {
             var projects = _projectManager.GetProjects(GetToken());
-            if (projects == null)
+            if (projects.Count == 0)
             {
                 Assert.Fail("нет проектов");
             }

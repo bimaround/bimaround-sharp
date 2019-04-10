@@ -1,4 +1,6 @@
-﻿using BIMAroundClient.Interfaces;
+﻿using System;
+using System.Net;
+using BIMAroundClient.Interfaces;
 using BIMAroundClient.ObjectModel.Login;
 using RestSharp;
 
@@ -15,22 +17,36 @@ namespace BIMAroundClient
         /// <returns></returns>
         public string GetToken(string login, string password, string clientUrl)
         {
-            var loginRequest = new LoginRequest
+            string token = null;
+
+            try
             {
-                login = login,
-                password = password
-            };
+                var loginRequest = new LoginRequest
+                {
+                    login = login,
+                    password = password
+                };
 
-            var client = new RestClient(clientUrl);
-            var request = new RestRequest("/login") {Method = Method.POST};
-            request.AddJsonBody(loginRequest);
+                var client = new RestClient(clientUrl);
+                var request = new RestRequest("/login") { Method = Method.POST };
+                request.AddJsonBody(loginRequest);
 
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 |
+                                                       (SecurityProtocolType)768 | (SecurityProtocolType)3072;
 
-            var restResponse = client.Execute<LoginResponse>(request);
+                var restResponse = client.Execute<LoginResponse>(request);
 
-            var response = restResponse.Data;
+                var response = restResponse.Data;
 
-            return response.token;
+                token = response.token;
+                //TODO change to serilog Logger.Error(restResponse.ErrorException);
+            }
+            catch (Exception e)
+            {
+                //TODO change to serilog Logger.Error(e);
+            }
+
+            return token;
         }
     }
 }

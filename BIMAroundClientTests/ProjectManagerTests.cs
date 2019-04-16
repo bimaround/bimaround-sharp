@@ -28,7 +28,7 @@ namespace BIMAroundClientTests
         [TestMethod()]
         public void GetProjectsTest()
         {
-            var projects = _projectManager.GetProjects(GetToken());
+            var projects = _projectManager.GetProjects(GetToken(), ClientUrl);
             if (projects.Count == 0)
             {
                 Assert.Fail("нет проектов");

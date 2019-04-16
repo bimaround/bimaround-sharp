@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BIMAroundClient.ObjectModel.Project;
+using BIMAroundClient.ObjectModel.Projects;
 
 namespace BIMAroundClient.Interfaces
 {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using BIMAroundClient.Interfaces;
 using BIMAroundClient.ObjectModel.Notes;
 using RestSharp;
@@ -15,7 +16,8 @@ namespace BIMAroundClient
             request.AddUrlSegment("projectCode", projectCode);
             request.AddUrlSegment("iid", issueIid);
             request.AddHeader("Authorization", "Bearer " + token);
-
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 |
+                                                   (SecurityProtocolType)768 | (SecurityProtocolType)3072;
             var response = client.Execute(request);
             
             var notes = new JsonDeserializer().Deserialize<List<Note>>(response);

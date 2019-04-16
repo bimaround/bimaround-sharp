@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using BIMAroundClient.Interfaces;
-using BIMAroundClient.ObjectModel.Project;
+using BIMAroundClient.ObjectModel.Projects;
 using RestSharp;
 
 namespace BIMAroundClient
@@ -22,6 +23,9 @@ namespace BIMAroundClient
                 var request = new RestRequest("/projects");
                 request.AddHeader("Authorization", "Bearer " + token);
 
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 |
+                                                       (SecurityProtocolType)768 | (SecurityProtocolType)3072;
+
                 var restResponse = client.Execute<ProjectResponse>(request);
 
                 var projects = new List<Project>();
@@ -31,8 +35,8 @@ namespace BIMAroundClient
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
             }
+            return new List<Project>();
         }
     }
 }

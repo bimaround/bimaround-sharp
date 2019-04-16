@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BIMAroundClient.ObjectModel.Project
+namespace BIMAroundClient.ObjectModel.Projects
 {
     class ProjectResponse
     {

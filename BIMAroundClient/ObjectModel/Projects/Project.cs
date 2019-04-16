@@ -1,4 +1,4 @@
-﻿namespace BIMAroundClient.ObjectModel.Project
+﻿namespace BIMAroundClient.ObjectModel.Projects
 {
     public class Project
     {

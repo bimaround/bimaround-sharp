@@ -3,7 +3,7 @@ using System.Linq;
 using BIMAroundClient;
 using BIMAroundClient.Interfaces;
 using BIMAroundClient.ObjectModel.Issues;
-using BIMAroundClient.ObjectModel.Project;
+using BIMAroundClient.ObjectModel.Projects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BIMAroundClientTests

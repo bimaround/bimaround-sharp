@@ -46,6 +46,7 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,13 +55,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttacmentsManager.cs" />
     <Compile Include="Authorize.cs" />
+    <Compile Include="Interfaces\IAttachmentManager.cs" />
     <Compile Include="Interfaces\IAuthorize.cs" />
     <Compile Include="Interfaces\IIssueNotesManager.cs" />
     <Compile Include="Interfaces\IIssuesManager.cs" />
     <Compile Include="Interfaces\IProjectManager.cs" />
+    <Compile Include="Interfaces\IUsersManager.cs" />
     <Compile Include="IssueNotesManager.cs" />
     <Compile Include="IssuesManager.cs" />
+    <Compile Include="ObjectModel\Attachments\Attachment.cs" />
     <Compile Include="ObjectModel\Issues\CreateIssueRequest.cs" />
     <Compile Include="ObjectModel\Issues\GetIssuesResponse.cs" />
     <Compile Include="ObjectModel\Issues\Issue.cs" />
@@ -70,10 +75,13 @@
     <Compile Include="ObjectModel\Notes\CreateNoteRequest.cs" />
     <Compile Include="ObjectModel\Notes\GetNotesResponse.cs" />
     <Compile Include="ObjectModel\Notes\Note.cs" />
-    <Compile Include="ObjectModel\Project\Project.cs" />
-    <Compile Include="ObjectModel\Project\ProjectResponse.cs" />
+    <Compile Include="ObjectModel\Projects\Project.cs" />
+    <Compile Include="ObjectModel\Projects\ProjectResponse.cs" />
+    <Compile Include="ObjectModel\Users\ProjectUsers.cs" />
+    <Compile Include="ObjectModel\Users\User.cs" />
     <Compile Include="ProjectManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsersManager.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

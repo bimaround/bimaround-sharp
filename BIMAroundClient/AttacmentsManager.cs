@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using BIMAroundClient.Interfaces;
 using BIMAroundClient.ObjectModel.Attachments;
 using RestSharp;
-using RestSharp.Extensions;
 
 namespace BIMAroundClient
 {
@@ -47,6 +46,8 @@ namespace BIMAroundClient
             {
                 var client = new RestClient(clientUrl);
                 var request = new RestRequest("/projects/{projectCode}/issues/{iid}/attachments/{aid}");
+                request.AddUrlSegment("projectCode", projectCode);
+                request.AddUrlSegment("iid", issueIid);
                 request.AddUrlSegment("aid", attachment.id);
                 request.AddHeader("Authorization", "Bearer " + token);
 
@@ -71,7 +72,7 @@ namespace BIMAroundClient
             }
         }
 
-        public void UploadAttachments(string token, string projectCode, string issueIid, string filePath, string clientUrl)
+        public Attachment UploadAttachments(string token, string projectCode, string issueIid, string filePath, string clientUrl)
         {
             try
             {
@@ -85,8 +86,33 @@ namespace BIMAroundClient
 
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 |
                                                        (SecurityProtocolType)768 | (SecurityProtocolType)3072;
-                var response = client.Execute(request);
+                var response = client.Execute<Attachment>(request);
+                
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    //TODO Log
+                }
+                else
+                {
+                    return response.Data;
+                }
+            }
+            catch (Exception e)
+            {
+                //TODO log
+            }   
+            return new Attachment();
+        }
 
+        public void DeleteAttachment(string token, Attachment attachment, string clientUrl = "https://bimaround.com/api")
+        {
+            try
+            {
+                var client = new RestClient(clientUrl);
+                var request = new RestRequest("/projects/{projectCode}/issues/{iid}/attachments/{aid}") { Method = Method.DELETE };
+                request.AddUrlSegment("aid", attachment.id);
+                request.AddHeader("Authorization", "Bearer " + token);
+                var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     //TODO Log
@@ -94,7 +120,7 @@ namespace BIMAroundClient
             }
             catch (Exception e)
             {
-                //TODO log
+                //TODO Log
             }
         }
     }

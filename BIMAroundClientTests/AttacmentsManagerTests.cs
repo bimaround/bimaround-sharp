@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
 using BIMAroundClient;
 using BIMAroundClient.Interfaces;
+using BIMAroundClient.ObjectModel.Attachments;
 using BIMAroundClient.ObjectModel.Issues;
 using BIMAroundClient.ObjectModel.Projects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -37,6 +40,11 @@ namespace BIMAroundClientTests
             var allIssues = _issuesManager.GetIssues(GetToken(), GetProject().code, ClientUrl);
             var issue = allIssues.FirstOrDefault();
             return issue;
+        }
+
+        private Attachment GetTestAttachment()
+        {
+            return _attachmentManager.UploadAttachments(GetToken(), GetProject().code, GetIssue().iid, "C:/Users/Admin/Documents/Capture.PNG", ClientUrl);
         }
 
         [TestMethod]
@@ -77,7 +85,14 @@ namespace BIMAroundClientTests
         [TestMethod()]
         public void UploadAttachmentsTest()
         {
-            _attachmentManager.UploadAttachments(GetToken(), GetProject().code, GetIssue().iid, "C:/Users/Admin/Documents/flower.jfif", ClientUrl);
+            _attachmentManager.UploadAttachments(GetToken(), GetProject().code, GetIssue().iid, "C:/Users/Admin/Documents/Capture.PNG", ClientUrl);
+        }
+        
+        [TestMethod]
+        public void DeleteAttachmentTest()
+        {
+            //TODO еще не доделан
+            _attachmentManager.DeleteAttachment(GetToken(), GetTestAttachment(), ClientUrl);
         }
     }
 }

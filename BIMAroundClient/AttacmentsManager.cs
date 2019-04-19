@@ -50,6 +50,7 @@ namespace BIMAroundClient
                 request.AddUrlSegment("iid", issueIid);
                 request.AddUrlSegment("aid", attachment.id);
                 request.AddHeader("Authorization", "Bearer " + token);
+                request.AddHeader("Accept", "*/*");
 
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 |
                                                        (SecurityProtocolType)768 | (SecurityProtocolType)3072;
@@ -104,14 +105,20 @@ namespace BIMAroundClient
             return new Attachment();
         }
 
-        public void DeleteAttachment(string token, Attachment attachment, string clientUrl = "https://bimaround.com/api")
+        public void DeleteAttachment(string token, string projectCode, string issueIid, Attachment attachment, string clientUrl)
         {
             try
             {
                 var client = new RestClient(clientUrl);
                 var request = new RestRequest("/projects/{projectCode}/issues/{iid}/attachments/{aid}") { Method = Method.DELETE };
+                request.AddUrlSegment("projectCode", projectCode);
+                request.AddUrlSegment("iid", issueIid);
                 request.AddUrlSegment("aid", attachment.id);
                 request.AddHeader("Authorization", "Bearer " + token);
+
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 |
+                                                       (SecurityProtocolType)768 | (SecurityProtocolType)3072;
+
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {

@@ -92,7 +92,7 @@ namespace BIMAroundClientTests
         public void DeleteAttachmentTest()
         {
             //TODO еще не доделан
-            _attachmentManager.DeleteAttachment(GetToken(), GetTestAttachment(), ClientUrl);
+            _attachmentManager.DeleteAttachment(GetToken(), GetProject().code, GetIssue().iid, GetTestAttachment(), ClientUrl);
         }
     }
 }

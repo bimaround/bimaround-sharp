@@ -4,6 +4,7 @@ using BIMAroundClient;
 using BIMAroundClient.Interfaces;
 using BIMAroundClient.ObjectModel.Issues;
 using BIMAroundClient.ObjectModel.Projects;
+using BIMAroundClient.ObjectModel.Users;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BIMAroundClientTests
@@ -19,6 +20,14 @@ namespace BIMAroundClientTests
         private readonly IAuthorize _authorize = new Authorize();
         private readonly IProjectManager _projectManager = new ProjectManager();
         private readonly IIssuesManager _issuesManager = new IssuesManager();
+
+        User testUser1 = new User()
+        {
+            accountType = "",
+            email = "",
+            id = 1,
+            login = ""
+        };
 
         [TestMethod()]
         private string GetToken()
@@ -54,7 +63,12 @@ namespace BIMAroundClientTests
         [TestMethod()]
         public void CreateIssueTest()
         {
-            var testIssue = new Issue(){title = $"test issue {DateTime.Now}"};
+            var testIssue = new Issue()
+            {
+                title = $"test issue {DateTime.Now}",
+                assignee = testUser1,//todo edit test user
+                dueDate = DateTime.Now.AddDays(10)
+            };
             var result = _issuesManager.CreateIssue(GetToken(), GetProject().code, testIssue, ClientUrl);
 
             if (result.iid != null && result.title == testIssue.title)
@@ -97,14 +111,19 @@ namespace BIMAroundClientTests
         [TestMethod()]
         public void UpdateIssueTest()
         {
-            var testIssue = new Issue() { title = $"new test issue for find by id {DateTime.Now}" };
+            var testIssue = new Issue()
+            {
+                title = $"new test issue for find by id {DateTime.Now}",
+                dueDate = DateTime.Now
+            };
             var createdIssue = _issuesManager.CreateIssue(GetToken(), GetProject().code, testIssue, ClientUrl);
 
             if (createdIssue != null && createdIssue.title == testIssue.title)
             {
                 createdIssue.title += $" edited for update {DateTime.Now}";
+                createdIssue.dueDate = DateTime.Now.AddDays(1);
                 var updatedIssue = _issuesManager.UpdateIssue(GetToken(), GetProject().code, createdIssue, ClientUrl);
-                if (updatedIssue != null && updatedIssue.title == createdIssue.title)
+                if (updatedIssue != null && updatedIssue.title == createdIssue.title && updatedIssue.dueDate == createdIssue.dueDate)
                 {
                     TestContext.WriteLine("Updated succsessful");
                     _issuesManager.DeleteIssue(GetToken(), GetProject().code, updatedIssue.iid, ClientUrl);

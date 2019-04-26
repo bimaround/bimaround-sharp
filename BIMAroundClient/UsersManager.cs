@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using BIMAroundClient.Interfaces;
 using BIMAroundClient.ObjectModel.Users;
 using RestSharp;
@@ -16,6 +17,9 @@ namespace BIMAroundClient
                 var request = new RestRequest("/projects/{projectCode}/users");
                 request.AddUrlSegment("projectCode", projectCode);
                 request.AddHeader("Authorization", "Bearer " + token);
+
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 |
+                                                       (SecurityProtocolType)768 | (SecurityProtocolType)3072;
 
                 var response = client.Execute<List<ProjectUsers>>(request);
                 return response.Data;

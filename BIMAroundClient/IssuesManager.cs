@@ -32,7 +32,10 @@ namespace BIMAroundClient
             {
                 title = issue.title,
                 assignee = issue.assignee,
-                dueDate = issue.dueDate
+                dueDate = issue.dueDate,
+                x = issue.x,
+                y = issue.y,
+                z = issue.z
             };
 
             var request = new RestRequest("/projects/{projectCode}/issues") {Method = Method.POST};

@@ -66,8 +66,11 @@ namespace BIMAroundClientTests
             var testIssue = new Issue()
             {
                 title = $"test issue {DateTime.Now}",
-                assignee = testUser1,//todo edit test user
-                dueDate = DateTime.Now.AddDays(10)
+                //assignee = testUser1,//todo edit test user
+                dueDate = DateTime.Now.AddDays(10),
+                x = 100,
+                y = 150,
+                z = 200
             };
             var result = _issuesManager.CreateIssue(GetToken(), GetProject().code, testIssue, ClientUrl);
 
